@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eukel Infrastructure Consultancy</title>
+    <meta name="description" content="Boutique infrastructure consultancy specializing in Azure migrations, virtualization, and enterprise automation.">
+    <style>
+        :root {
+            --navy: #1a2332;
+            --slate: #2d3748;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--slate);
+            line-height: 1.6;
+            background: var(--white);
+        }
+
+        /* Nav */
+        nav {
+            background: var(--navy);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+        nav .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav .logo {
+            color: var(--white);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+        }
+        nav .logo span { color: var(--accent); }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        nav a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        nav a:hover { color: var(--white); }
+
+        /* Hero */
+        .hero {
+            background: var(--navy);
+            color: var(--white);
+            padding: 8rem 2rem 5rem;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .hero p {
+            color: var(--gray);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        .hero .cta {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--white);
+            padding: 0.75rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .hero .cta:hover { background: var(--accent-hover); }
+
+        /* Sections */
+        section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+        section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--navy);
+        }
+        section .subtitle {
+            color: var(--gray);
+            font-size: 1.05rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+
+        /* Services grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .service-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 2rem;
+            transition: box-shadow 0.2s;
+        }
+        .service-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .service-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.75rem;
+            color: var(--navy);
+        }
+        .service-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+        .service-icon {
+            width: 40px;
+            height: 40px;
+            background: #eff6ff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* Background */
+        .background {
+            background: var(--light);
+        }
+        .background section {
+            max-width: 1100px;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .stat h3 {
+            font-size: 2rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+        .stat p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Portfolio */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .portfolio-item {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        .portfolio-item h3 {
+            font-size: 1rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+        .portfolio-item p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        .portfolio-item .tag {
+            display: inline-block;
+            background: #e0e7ff;
+            color: var(--accent);
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            margin-top: 0.75rem;
+            margin-right: 0.25rem;
+            font-weight: 600;
+        }
+
+        /* Contact */
+        .contact-section {
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+        }
+        .contact-section section h2 { color: var(--white); }
+        .contact-section .subtitle { color: var(--gray); margin: 0 auto 2rem; }
+        .contact-section .cta {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--white);
+            padding: 0.75rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .contact-section .cta:hover { background: var(--accent-hover); }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            border-top: 1px solid #2d3748;
+            color: var(--gray);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.85rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .hero h1 { font-size: 1.8rem; }
+            .hero { padding: 6rem 1.5rem 3rem; }
+            section { padding: 3rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <a href="#" class="logo">Eukel <span>Infrastructure</span></a>
+        <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="hero">
+    <h1>Infrastructure that works.<br>Delivered fast.</h1>
+    <p>Boutique consultancy specializing in Azure migrations, virtualization architecture, and enterprise automation. We bring 20 years of hands-on experience to every engagement.</p>
+    <a href="#contact" class="cta">Start a conversation</a>
+</div>
+
+<section id="services">
+    <h2>Services</h2>
+    <p class="subtitle">We solve infrastructure problems end to end, from assessment through production deployment.</p>
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="service-icon">&#9729;</div>
+            <h3>Azure Cloud Architecture</h3>
+            <p>Cloud adoption strategy, landing zone design, Bicep/ARM deployments, and cost optimization. We have migrated hundreds of workloads across multi-site enterprises.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">&#9881;</div>
+            <h3>Virtualization & Migration</h3>
+            <p>VMware to Hyper-V migrations, VDI architecture (Horizon, AVD), SAN migrations, and datacenter consolidation. Proven at scale across healthcare, manufacturing, and retail.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">&#128274;</div>
+            <h3>Security & Compliance</h3>
+            <p>Group Policy automation, vulnerability remediation, Active Directory hardening, and compliance evidence collection. Security built in from day one, not bolted on after.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">&#9889;</div>
+            <h3>Automation & DevOps</h3>
+            <p>PowerShell and Python automation, CI/CD pipelines, infrastructure-as-code, Docker containerization, and monitoring. We automate the repetitive so your team can focus on what matters.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">&#128736;</div>
+            <h3>API & Integration Development</h3>
+            <p>REST API development, MCP server integrations, workflow automation with n8n, and custom tooling. Connect your systems and eliminate manual processes.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">&#128196;</div>
+            <h3>Documentation & Knowledge Transfer</h3>
+            <p>Runbooks, migration guides, architecture decision records, and training materials. We document what we build so your team can own it after we leave.</p>
+        </div>
+    </div>
+</section>
+
+<div class="background" id="about">
+    <section>
+        <h2>Why us</h2>
+        <p class="subtitle">Small team, deep expertise, fast delivery. No layers of account managers between you and the engineers doing the work.</p>
+        <div class="stats">
+            <div class="stat">
+                <h3>20+</h3>
+                <p>Years in enterprise infrastructure</p>
+            </div>
+            <div class="stat">
+                <h3>500+</h3>
+                <p>Workloads migrated to cloud</p>
+            </div>
+            <div class="stat">
+                <h3>33</h3>
+                <p>Sites supported globally</p>
+            </div>
+            <div class="stat">
+                <h3>20K</h3>
+                <p>Concurrent VDI users architected</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<section id="portfolio">
+    <h2>Open Source Portfolio</h2>
+    <p class="subtitle">Production-grade tools we have built and maintain. All tested, documented, and ready to deploy.</p>
+    <div class="portfolio-grid">
+        <div class="portfolio-item">
+            <h3>GPO Toolkit</h3>
+            <p>PowerShell module for Group Policy import, export, and migration across Active Directory environments.</p>
+            <span class="tag">PowerShell</span><span class="tag">Active Directory</span>
+        </div>
+        <div class="portfolio-item">
+            <h3>Azure Cloud Design Library</h3>
+            <p>121-file reference library of Azure architecture patterns with Bicep templates and CI validation.</p>
+            <span class="tag">Azure</span><span class="tag">Bicep</span><span class="tag">IaC</span>
+        </div>
+        <div class="portfolio-item">
+            <h3>Hypervisor Migration Guide</h3>
+            <p>Complete VMware-to-Hyper-V migration playbook with WAC deployment scripts and documented gotchas.</p>
+            <span class="tag">Hyper-V</span><span class="tag">VMware</span>
+        </div>
+        <div class="portfolio-item">
+            <h3>Vulnerability Reconciler</h3>
+            <p>Automated pipeline for reconciling vulnerability scan results across multiple tools and formats.</p>
+            <span class="tag">Security</span><span class="tag">Python</span>
+        </div>
+        <div class="portfolio-item">
+            <h3>Windows Server Baseline</h3>
+            <p>Hardened configuration baselines for Windows Server with automated compliance checking.</p>
+            <span class="tag">Security</span><span class="tag">PowerShell</span>
+        </div>
+        <div class="portfolio-item">
+            <h3>Infrastructure Scripts</h3>
+            <p>Collection of production-tested automation scripts for common infrastructure tasks.</p>
+            <span class="tag">Automation</span><span class="tag">PowerShell</span>
+        </div>
+    </div>
+</section>
+
+<div class="contact-section" id="contact">
+    <section>
+        <h2>Let's talk</h2>
+        <p class="subtitle">Whether you need a full migration or a quick assessment, we are happy to scope it out.</p>
+        <a href="mailto:benjamin@eukelinfra.com" class="cta">benjamin@eukelinfra.com</a>
+    </section>
+</div>
+
+<footer>
+    &copy; 2026 Eukel Infrastructure Consultancy. All rights reserved.
+</footer>
+
+</body>
+</html>

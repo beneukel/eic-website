@@ -1,0 +1,12 @@
+# Internal process artifacts. Not for public-facing repo.
+CLAUDE.md
+.routing-override
+
+# Sanitization audit reports. Contain internal-only HEM/client references
+# and must never enter git history of any EIC repo.
+sanitization-reports/
+
+# OS / editor cruft
+.DS_Store
+*.swp
+*~

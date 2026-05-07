@@ -1,334 +1,916 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eukel Infrastructure Consultancy</title>
-    <meta name="description" content="Boutique infrastructure consultancy specializing in Azure migrations, virtualization, and enterprise automation.">
-    <style>
-        :root {
-            --navy: #1a2332;
-            --slate: #2d3748;
-            --accent: #3b82f6;
-            --accent-hover: #2563eb;
-            --light: #f8fafc;
-            --gray: #94a3b8;
-            --white: #ffffff;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eukel Infrastructure Consultancy</title>
+<meta name="description" content="Boutique infrastructure consultancy. Azure cloud architecture, security and compliance automation, AI-augmented integration. 25 years of enterprise experience, delivered by the principal.">
+<meta name="theme-color" content="#FAF8F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14110D" media="(prefers-color-scheme: dark)">
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: var(--slate);
-            line-height: 1.6;
-            background: var(--white);
-        }
+<style>
+/* =========================================================================
+   DESIGN TOKENS
+   Single source of truth for color, typography, spacing, motion.
+   These tokens are referenced by both this site and the Technical Portfolio
+   PDF print stylesheet (built next). Do not duplicate values inline below;
+   modify here.
+   ========================================================================= */
+:root {
+  /* Color: light mode (warm editorial cream) */
+  --color-bg: #FAF8F2;
+  --color-bg-alt: #F1EDE2;
+  --color-ink: #1A1612;
+  --color-ink-soft: #4A3F35;
+  --color-ink-faint: #7A6E60;
+  --color-rule: #D9D2C0;
+  --color-accent: #7A1F2C;
+  --color-accent-soft: #A93D4D;
 
-        /* Nav */
-        nav {
-            background: var(--navy);
-            padding: 1rem 2rem;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-        }
-        nav .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        nav .logo {
-            color: var(--white);
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-decoration: none;
-            letter-spacing: 0.02em;
-        }
-        nav .logo span { color: var(--accent); }
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-        }
-        nav a {
-            color: var(--gray);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.2s;
-        }
-        nav a:hover { color: var(--white); }
+  /* Typography */
+  --font-display: 'Fraunces', 'Times New Roman', Georgia, serif;
+  --font-body: 'Spectral', 'Iowan Old Style', Georgia, serif;
 
-        /* Hero */
-        .hero {
-            background: var(--navy);
-            color: var(--white);
-            padding: 8rem 2rem 5rem;
-            text-align: center;
-        }
-        .hero h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-        .hero p {
-            color: var(--gray);
-            font-size: 1.15rem;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-        .hero .cta {
-            display: inline-block;
-            background: var(--accent);
-            color: var(--white);
-            padding: 0.75rem 2rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.2s;
-        }
-        .hero .cta:hover { background: var(--accent-hover); }
+  /* Type scale — pure rem, scales via fluid root font-size below.
+     Headings keep their own clamps for extra display-impact growth on wide screens. */
+  --size-caption: 0.78rem;
+  --size-small: 0.92rem;
+  --size-body: 1.0625rem;
+  --size-lead: 1.18rem;
+  --size-h3: 1.55rem;
+  --size-h2: 2.6rem;
+  --size-h1: clamp(2.75rem, 1.5rem + 4vw, 8.5rem);
+  --size-display: clamp(3.75rem, 2rem + 7vw, 13rem);
 
-        /* Sections */
-        section {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 5rem 2rem;
-        }
-        section h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--navy);
-        }
-        section .subtitle {
-            color: var(--gray);
-            font-size: 1.05rem;
-            margin-bottom: 3rem;
-            max-width: 600px;
-        }
+  /* Spacing scale — pure rem, scales via root font-size */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4.5rem;
+  --space-7: 6.5rem;
+  --space-8: 9rem;
+  --space-9: 13rem;
 
-        /* Services grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        .service-card {
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 2rem;
-            transition: box-shadow 0.2s;
-        }
-        .service-card:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-        .service-card h3 {
-            font-size: 1.15rem;
-            margin-bottom: 0.75rem;
-            color: var(--navy);
-        }
-        .service-card p {
-            color: #64748b;
-            font-size: 0.95rem;
-        }
-        .service-icon {
-            width: 40px;
-            height: 40px;
-            background: #eff6ff;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
+  /* Layout — generous caps so wide screens get filled */
+  --measure: 65ch;
+  --container-wide: min(2400px, 94vw);
+  --container-text: min(1100px, 92vw);
+  --gutter: clamp(1.25rem, 3vw, 4rem);
+  --section-padding: clamp(3rem, 5vw + 1rem, 9rem);
+  --section-padding-large: clamp(5rem, 8vw + 1rem, 13rem);
 
-        /* Background */
-        .background {
-            background: var(--light);
-        }
-        .background section {
-            max-width: 1100px;
-        }
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        .stat h3 {
-            font-size: 2rem;
-            color: var(--accent);
-            font-weight: 700;
-        }
-        .stat p {
-            color: var(--gray);
-            font-size: 0.9rem;
-            margin-top: 0.25rem;
-        }
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-quick: 200ms;
+  --duration-base: 600ms;
+  --duration-slow: 1200ms;
+}
 
-        /* Portfolio */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-        .portfolio-item {
-            background: var(--light);
-            border-radius: 8px;
-            padding: 1.5rem;
-        }
-        .portfolio-item h3 {
-            font-size: 1rem;
-            color: var(--navy);
-            margin-bottom: 0.5rem;
-        }
-        .portfolio-item p {
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-        .portfolio-item .tag {
-            display: inline-block;
-            background: #e0e7ff;
-            color: var(--accent);
-            font-size: 0.75rem;
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            margin-top: 0.75rem;
-            margin-right: 0.25rem;
-            font-weight: 600;
-        }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #14110D;
+    --color-bg-alt: #1F1A14;
+    --color-ink: #F0EBDF;
+    --color-ink-soft: #B5A99A;
+    --color-ink-faint: #7B7064;
+    --color-rule: #2F2820;
+    --color-accent: #E07684;
+    --color-accent-soft: #C0586B;
+  }
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-bg);
+  }
+}
 
-        /* Contact */
-        .contact-section {
-            background: var(--navy);
-            color: var(--white);
-            text-align: center;
-        }
-        .contact-section section h2 { color: var(--white); }
-        .contact-section .subtitle { color: var(--gray); margin: 0 auto 2rem; }
-        .contact-section .cta {
-            display: inline-block;
-            background: var(--accent);
-            color: var(--white);
-            padding: 0.75rem 2rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.2s;
-        }
-        .contact-section .cta:hover { background: var(--accent-hover); }
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
 
-        /* Footer */
-        footer {
-            background: var(--navy);
-            border-top: 1px solid #2d3748;
-            color: var(--gray);
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.85rem;
-        }
+/* =========================================================================
+   RESET & BASE
+   ========================================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
 
-        /* Mobile */
-        @media (max-width: 768px) {
-            nav ul { display: none; }
-            .hero h1 { font-size: 1.8rem; }
-            .hero { padding: 6rem 1.5rem 3rem; }
-            section { padding: 3rem 1.5rem; }
-        }
-    </style>
+/* Fluid root font-size — single slider that scales the entire design system.
+   Mobile (320px viewport) ≈ 16px; Laptop (1920px) ≈ 19.5px; 4K (3840px) ≈ 22px.
+   Because type and spacing are expressed in rem, everything scales proportionally:
+   wider viewports get bigger type, more padding, larger headings — without
+   needing to touch any other rule. */
+html {
+  font-size: clamp(16px, 14px + 0.3vw, 22px);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  line-height: 1.55;
+  font-weight: 400;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "onum" 1;
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+/* =========================================================================
+   TYPOGRAPHY
+   ========================================================================= */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--color-ink);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "wght" 400, "SOFT" 50;
+}
+
+h1 {
+  font-size: var(--size-h1);
+  letter-spacing: -0.035em;
+  font-variation-settings: "opsz" 144, "wght" 380, "SOFT" 30;
+}
+
+h2 {
+  font-size: var(--size-h2);
+  font-variation-settings: "opsz" 96, "wght" 420, "SOFT" 50;
+}
+
+h3 {
+  font-size: var(--size-h3);
+  font-variation-settings: "opsz" 36, "wght" 500, "SOFT" 50;
+  letter-spacing: -0.015em;
+}
+
+p { max-width: var(--measure); }
+
+em, .italic {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "wght" 400, "SOFT" 100;
+}
+
+a {
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: color var(--duration-quick) var(--ease-out);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: 1px;
+}
+
+/* =========================================================================
+   LAYOUT PRIMITIVES
+   ========================================================================= */
+/* Single container used by all sections — consistent left-rail across the page */
+.container {
+  max-width: var(--container-wide);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Text-content max-width applied via class on inner blocks, not via a separate container */
+.constrain-text {
+  max-width: var(--container-text);
+}
+
+section {
+  padding-block: var(--section-padding);
+}
+
+.rule {
+  width: 100%;
+  height: 1px;
+  background: var(--color-rule);
+  border: 0;
+}
+
+/* Skip link for keyboard users */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-3);
+  background: var(--color-accent);
+  color: var(--color-bg);
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--size-small);
+  z-index: 1000;
+  transition: top var(--duration-quick) var(--ease-out);
+}
+
+.skip-link:focus {
+  top: var(--space-3);
+  outline: none;
+}
+
+/* =========================================================================
+   NAV
+   ========================================================================= */
+header.site-header {
+  position: relative;
+  padding-block: var(--space-3);
+  border-bottom: 1px solid var(--color-rule);
+}
+
+header .container {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: var(--size-small);
+  font-variation-settings: "opsz" 14, "wght" 500, "SOFT" 30;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.brand .ampersand {
+  font-style: italic;
+  font-variation-settings: "opsz" 14, "wght" 400, "SOFT" 100;
+  color: var(--color-accent);
+  margin: 0 0.15em;
+  text-transform: none;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  font-family: var(--font-body);
+  font-size: var(--size-small);
+}
+
+nav a {
+  position: relative;
+  color: var(--color-ink-soft);
+  letter-spacing: 0.02em;
+  padding-block: 0.25rem;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+nav a:hover::after,
+nav a:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+nav a:hover, nav a:focus-visible { color: var(--color-ink); }
+
+@media (max-width: 640px) {
+  nav ul { gap: 1.1rem; font-size: var(--size-caption); }
+}
+
+/* =========================================================================
+   HERO
+   Editorial display moment. Type at scale. Asymmetric grid.
+   ========================================================================= */
+.hero {
+  padding-block: clamp(3rem, 8vw, 8rem) clamp(4rem, 10vw, 10rem);
+  position: relative;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--size-caption);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  opacity: 0;
+  animation: fade-up 800ms var(--ease-out) 100ms forwards;
+}
+
+.hero-eyebrow::before {
+  content: "";
+  width: 2.5rem;
+  height: 1px;
+  background: var(--color-accent);
+}
+
+.hero h1 {
+  font-size: var(--size-h1);
+  max-width: 18ch;
+  margin-bottom: var(--space-5);
+  opacity: 0;
+  animation: fade-up 1200ms var(--ease-out) 250ms forwards;
+}
+
+.hero h1 .accent-italic {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "wght" 380, "SOFT" 100;
+  color: var(--color-accent);
+}
+
+.hero-lede {
+  font-size: var(--size-lead);
+  line-height: 1.45;
+  max-width: 52ch;
+  color: var(--color-ink-soft);
+  margin-bottom: var(--space-5);
+  opacity: 0;
+  animation: fade-up 1200ms var(--ease-out) 500ms forwards;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5em;
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  color: var(--color-ink);
+  border-bottom: 1px solid var(--color-ink);
+  padding-bottom: 0.25em;
+  transition: color var(--duration-quick) var(--ease-out),
+              border-color var(--duration-quick) var(--ease-out),
+              gap var(--duration-base) var(--ease-out);
+  opacity: 0;
+  animation: fade-up 1200ms var(--ease-out) 750ms forwards;
+}
+
+.hero-cta::after {
+  content: "→";
+  font-family: var(--font-display);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.hero-cta:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  gap: 0.85em;
+}
+
+.hero-cta:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 6px;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(1.5rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================================================
+   SECTION META (caption + section number)
+   ========================================================================= */
+.section-meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-3);
+  align-items: baseline;
+  margin-bottom: var(--space-6);
+  font-family: var(--font-body);
+  font-size: var(--size-caption);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
+}
+
+.section-meta .section-num {
+  font-family: var(--font-display);
+  font-variation-settings: "opsz" 14, "wght" 400, "SOFT" 30;
+  font-style: italic;
+  letter-spacing: 0;
+  color: var(--color-accent);
+  text-transform: none;
+}
+
+.section-meta::after {
+  content: "";
+  height: 1px;
+  background: var(--color-rule);
+  align-self: center;
+  margin-left: var(--space-3);
+}
+
+/* =========================================================================
+   SERVICES
+   Numbered editorial list. No card borders. Hairline separators.
+   ========================================================================= */
+#services h2 {
+  max-width: 22ch;
+  margin-bottom: var(--space-6);
+  font-variation-settings: "opsz" 96, "wght" 380, "SOFT" 30;
+}
+
+#services h2 .em-italic {
+  font-style: italic;
+  color: var(--color-accent);
+  font-variation-settings: "opsz" 96, "wght" 380, "SOFT" 100;
+}
+
+.service-list {
+  list-style: none;
+  border-top: 1px solid var(--color-rule);
+}
+
+.service {
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  gap: var(--space-4);
+  padding-block: var(--space-5);
+  border-bottom: 1px solid var(--color-rule);
+  position: relative;
+}
+
+@media (min-width: 900px) {
+  .service {
+    grid-template-columns: 6rem minmax(20ch, 28ch) 1fr;
+    gap: var(--space-5);
+    align-items: baseline;
+  }
+}
+
+.service-num {
+  font-family: var(--font-display);
+  font-size: var(--size-h3);
+  font-variation-settings: "opsz" 36, "wght" 350, "SOFT" 30;
+  font-style: italic;
+  color: var(--color-accent);
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.service-title {
+  font-family: var(--font-display);
+  font-size: var(--size-h3);
+  font-variation-settings: "opsz" 36, "wght" 480, "SOFT" 50;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  color: var(--color-ink);
+}
+
+.service-body {
+  font-size: var(--size-body);
+  line-height: 1.6;
+  color: var(--color-ink-soft);
+  max-width: 52ch;
+  grid-column: 2;
+}
+
+@media (min-width: 900px) {
+  .service-body { grid-column: 3; }
+}
+
+.service-included {
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-rule);
+  font-size: var(--size-small);
+  color: var(--color-ink-faint);
+  max-width: var(--measure);
+  font-style: italic;
+  font-variation-settings: "opsz" 14, "wght" 400, "SOFT" 100;
+}
+
+/* =========================================================================
+   HOW IT WORKS
+   Drop cap. Generous narrative width. Pull quote.
+   ========================================================================= */
+#how-it-works {
+  background: var(--color-bg-alt);
+  padding-block: var(--section-padding-large);
+  margin-block: var(--section-padding);
+}
+
+#how-it-works h2 {
+  max-width: 18ch;
+  margin-bottom: var(--space-2);
+}
+
+#how-it-works .lede {
+  font-size: var(--size-lead);
+  font-style: italic;
+  font-variation-settings: "opsz" 36, "wght" 400, "SOFT" 100;
+  color: var(--color-accent);
+  margin-bottom: var(--space-6);
+  max-width: 38ch;
+}
+
+.narrative {
+  display: grid;
+  gap: var(--space-5);
+  max-width: var(--container-text);
+  /* Inherits container left-edge from parent; this just constrains reading width */
+}
+
+/* Section split: header column on the left, body column on the right.
+   Used by sections with prose narrative (How It Works, Contact) so the
+   wide container actually gets filled instead of having empty right space. */
+.section-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+@media (min-width: 900px) {
+  .section-split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    gap: clamp(2rem, 5vw, 6rem);
+    align-items: start;
+  }
+}
+
+.section-split .split-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.section-split .split-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.narrative p {
+  font-size: var(--size-lead);
+  line-height: 1.55;
+  color: var(--color-ink);
+  font-variant-numeric: oldstyle-nums;
+}
+
+/* Editorial drop cap on first paragraph */
+.narrative p:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-size: 5.4em;
+  line-height: 0.85;
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "wght" 320, "SOFT" 100;
+  color: var(--color-accent);
+  float: left;
+  margin: 0.05em 0.12em 0 -0.04em;
+  padding: 0;
+}
+
+.pull-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--size-h3);
+  font-variation-settings: "opsz" 36, "wght" 320, "SOFT" 100;
+  line-height: 1.25;
+  color: var(--color-ink);
+  border-left: 2px solid var(--color-accent);
+  padding-left: var(--space-4);
+  margin-block: var(--space-5);
+  max-width: 38ch;
+}
+
+/* =========================================================================
+   STATS — editorial display numerals
+   ========================================================================= */
+#why-us h2 {
+  max-width: 20ch;
+  margin-bottom: var(--space-6);
+}
+
+#why-us h2 em {
+  font-style: italic;
+  color: var(--color-accent);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5) var(--space-4);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-rule);
+}
+
+@media (min-width: 720px) {
+  .stats { grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.stat-num {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 2rem + 4vw, 5.5rem);
+  font-variation-settings: "opsz" 144, "wght" 320, "SOFT" 30;
+  letter-spacing: -0.04em;
+  line-height: 0.85;
+  color: var(--color-ink);
+  font-feature-settings: "lnum" 1, "tnum" 0;
+}
+
+.stat-num .unit {
+  font-size: 0.5em;
+  font-variation-settings: "opsz" 36, "wght" 350, "SOFT" 30;
+  font-style: italic;
+  color: var(--color-accent);
+  margin-left: 0.05em;
+  letter-spacing: 0;
+}
+
+.stat-label {
+  font-family: var(--font-body);
+  font-size: var(--size-small);
+  line-height: 1.4;
+  color: var(--color-ink-soft);
+  letter-spacing: 0.01em;
+  max-width: 22ch;
+}
+
+/* =========================================================================
+   CONTACT
+   Closing flourish. Center-anchored. Type at scale.
+   ========================================================================= */
+#contact {
+  padding-block: var(--section-padding-large);
+  position: relative;
+}
+
+#contact h2 {
+  font-size: var(--size-display);
+  font-variation-settings: "opsz" 144, "wght" 320, "SOFT" 30;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  margin-bottom: var(--space-4);
+}
+
+#contact h2 em {
+  font-style: italic;
+  color: var(--color-accent);
+  font-variation-settings: "opsz" 144, "wght" 320, "SOFT" 100;
+}
+
+#contact .subtitle {
+  font-size: var(--size-lead);
+  color: var(--color-ink-soft);
+  max-width: 48ch;
+  margin-bottom: var(--space-5);
+}
+
+.email-link {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 1.1rem + 1.2vw, 2.2rem);
+  font-variation-settings: "opsz" 96, "wght" 380, "SOFT" 50;
+  font-style: italic;
+  color: var(--color-accent);
+  letter-spacing: -0.01em;
+  border-bottom: 1px solid var(--color-rule);
+  padding-bottom: 0.15em;
+  transition: color var(--duration-quick) var(--ease-out),
+              border-color var(--duration-quick) var(--ease-out);
+}
+
+.email-link:hover, .email-link:focus-visible {
+  color: var(--color-accent-soft);
+  border-color: var(--color-accent);
+}
+
+/* =========================================================================
+   FOOTER
+   ========================================================================= */
+footer {
+  border-top: 1px solid var(--color-rule);
+  padding-block: var(--space-4);
+  font-size: var(--size-caption);
+  color: var(--color-ink-faint);
+  letter-spacing: 0.04em;
+}
+
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+footer .copy {
+  font-family: var(--font-body);
+}
+
+footer .signoff {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-variation-settings: "opsz" 14, "wght" 400, "SOFT" 100;
+  color: var(--color-accent);
+  letter-spacing: 0;
+}
+
+/* =========================================================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================================================= */
+@media (max-width: 700px) {
+  .hero h1 .accent-italic { display: inline; }
+  .narrative p:first-of-type::first-letter {
+    font-size: 4.2em;
+  }
+  .pull-quote { padding-left: var(--space-3); }
+}
+</style>
 </head>
+
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 
-<nav>
+<header class="site-header">
+  <div class="container">
+    <a href="#" class="brand" aria-label="Eukel Infrastructure Consultancy, home">
+      Eukel <span class="ampersand">&</span> Infrastructure
+    </a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#services">Practice</a></li>
+        <li><a href="#how-it-works">Method</a></li>
+        <li><a href="#why-us">Record</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-h1">
     <div class="container">
-        <a href="#" class="logo">Eukel <span>Infrastructure</span></a>
-        <ul>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#how-it-works">How it Works</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+      <p class="hero-eyebrow">Boutique Infrastructure Consultancy</p>
+      <h1 id="hero-h1">
+        Infrastructure that <span class="accent-italic">works.</span><br>
+        Delivered fast.
+      </h1>
+      <p class="hero-lede">
+        Azure cloud architecture, security and compliance automation, and AI-augmented integration. Twenty-five plus years of enterprise experience, brought to every engagement by the principal who delivers it.
+      </p>
+      <a href="#contact" class="hero-cta">Start a conversation</a>
     </div>
-</nav>
+  </section>
 
-<div class="hero">
-    <h1>Infrastructure that works.<br>Delivered fast.</h1>
-    <p>Boutique consultancy specializing in Azure cloud architecture, security and compliance automation, and AI-augmented integration. 25 years of enterprise infrastructure experience, brought to every engagement by the principal who delivers it.</p>
-    <a href="#contact" class="cta">Start a conversation</a>
-</div>
+  <hr class="rule" aria-hidden="true">
 
-<section id="services">
-    <h2>Services</h2>
-    <p class="subtitle">We solve infrastructure problems end to end, from assessment through production deployment.</p>
-    <div class="services-grid">
-        <div class="service-card">
-            <div class="service-icon">&#9729;</div>
-            <h3>Azure Cloud Architecture &amp; Migration</h3>
-            <p>Cloud adoption strategy, landing zone design, Bicep and ARM deployments, VMware to Hyper-V and AVD migrations, SAN migrations, datacenter consolidation, and cost optimization. Proven at scale across healthcare, manufacturing, and retail.</p>
-        </div>
-        <div class="service-card">
-            <div class="service-icon">&#128274;</div>
-            <h3>Security &amp; Compliance Automation</h3>
-            <p>Group Policy automation, vulnerability remediation pipelines, Active Directory hardening, Windows Server baselines (CIS, STIG, HIPAA-aligned), and automated compliance evidence collection. Security built in from day one, not bolted on after.</p>
-        </div>
-        <div class="service-card">
-            <div class="service-icon">&#128736;</div>
-            <h3>AI-Augmented Integration &amp; Tooling</h3>
-            <p>REST API development, MCP server integrations, workflow automation with n8n, AI-orchestrated ServiceNow integrations, and custom tooling. Connect your systems and eliminate manual processes with AI-augmented capacity.</p>
-        </div>
+  <!-- SERVICES -->
+  <section id="services" aria-labelledby="services-h2">
+    <div class="container">
+      <p class="section-meta"><span class="section-num">i.</span> Practice</p>
+      <h2 id="services-h2">
+        Three disciplines, <span class="em-italic">delivered end&#8209;to&#8209;end.</span>
+      </h2>
+
+      <ol class="service-list">
+        <li class="service">
+          <div class="service-num">01</div>
+          <h3 class="service-title">Azure Cloud Architecture &amp; Migration</h3>
+          <p class="service-body">
+            Cloud adoption strategy, landing zone design, Bicep and ARM deployments, VMware to Hyper-V and AVD migrations, SAN migrations, datacenter consolidation, and cost optimization. Proven at scale across healthcare, manufacturing, and retail.
+          </p>
+        </li>
+        <li class="service">
+          <div class="service-num">02</div>
+          <h3 class="service-title">Security &amp; Compliance Automation</h3>
+          <p class="service-body">
+            Group Policy automation, vulnerability remediation pipelines, Active Directory hardening, Windows Server baselines (CIS, STIG, HIPAA-aligned), and automated compliance evidence collection. Security built in from day one, not bolted on after.
+          </p>
+        </li>
+        <li class="service">
+          <div class="service-num">03</div>
+          <h3 class="service-title">AI-Augmented Integration &amp; Tooling</h3>
+          <p class="service-body">
+            REST API development, MCP server integrations, workflow automation with n8n, AI-orchestrated ServiceNow integrations, and custom tooling. Connect your systems and eliminate manual processes with AI-augmented capacity.
+          </p>
+        </li>
+      </ol>
+
+      <p class="service-included">
+        Documentation, runbooks, architecture decision records, and knowledge transfer materials are included in every engagement, not sold as a separate practice. Methodology details below.
+      </p>
     </div>
-    <p class="subtitle" style="margin-top: 2rem; max-width: 800px;">Documentation, runbooks, architecture decision records, and knowledge transfer materials are included in every engagement, not sold as a separate practice. Methodology details below.</p>
-</section>
+  </section>
 
-<section id="how-it-works">
-    <h2>How EIC Works</h2>
-    <p class="subtitle">Direct accountability. One principal, one point of accountability, one standard of delivery.</p>
-    <div style="max-width: 800px; line-height: 1.7;">
-        <p style="margin-bottom: 1.5rem;">EIC is structured for direct accountability. Every engagement is led, reviewed, and delivered by Benjamin Eukel as principal. The scale of work EIC can deliver is enabled by purpose-built delivery infrastructure: automated test gates, tiered quality review, AI-augmented capacity for parallel workstreams, and subcontracted specialists engaged when an engagement requires expertise outside the core practice. The client never deals with an account manager, a junior consultant, or a handoff. One principal, one point of accountability, one standard of delivery.</p>
-        <p style="margin-bottom: 0;">I built EIC because I spent 25 years wanting cover from a boss and never getting it. EIC is the consultancy I always wanted to work for: senior principal accountable end-to-end, quality discipline that doesn't get cut when timelines compress, and infrastructure built to deliver enterprise-grade work without the overhead of a traditional consultancy.</p>
-    </div>
-</section>
+  <!-- HOW IT WORKS -->
+  <section id="how-it-works" aria-labelledby="how-h2">
+    <div class="container">
+      <p class="section-meta"><span class="section-num">ii.</span> Method</p>
+      <div class="section-split">
+        <header class="split-header">
+          <h2 id="how-h2">How EIC works.</h2>
+          <p class="lede">Direct accountability. One principal, one point of accountability, one standard of delivery.</p>
+        </header>
+        <div class="split-body narrative">
+          <p>
+            EIC is structured for direct accountability. Every engagement is led, reviewed, and delivered by Benjamin Eukel as principal. The scale of work EIC can deliver is enabled by purpose-built delivery infrastructure: automated test gates, tiered quality review, AI-augmented capacity for parallel workstreams, and subcontracted specialists engaged when an engagement requires expertise outside the core practice. The client never deals with an account manager, a junior consultant, or a handoff. One principal, one point of accountability, one standard of delivery.
+          </p>
 
-<div class="background" id="about">
-    <section>
-        <h2>Why us</h2>
-        <p class="subtitle">Small team, deep expertise, fast delivery. No layers of account managers between you and the engineers doing the work.</p>
-        <div class="stats">
-            <div class="stat">
-                <h3>25</h3>
-                <p>Years in enterprise infrastructure</p>
-            </div>
-            <div class="stat">
-                <h3>500+</h3>
-                <p>Workloads migrated to cloud</p>
-            </div>
-            <div class="stat">
-                <h3>33</h3>
-                <p>Sites supported globally</p>
-            </div>
-            <div class="stat">
-                <h3>20K</h3>
-                <p>Concurrent VDI users architected</p>
-            </div>
+          <blockquote class="pull-quote">
+            The consultancy I always wanted to work for: senior principal accountable end-to-end, quality discipline that doesn&rsquo;t get cut when timelines compress.
+          </blockquote>
+
+          <p>
+            I built EIC because I spent twenty-five plus years wanting cover from a boss and never getting it. EIC is the consultancy I always wanted to work for: senior principal accountable end-to-end, quality discipline that doesn&rsquo;t get cut when timelines compress, and infrastructure built to deliver enterprise-grade work without the overhead of a traditional consultancy.
+          </p>
         </div>
-    </section>
-</div>
+      </div>
+    </div>
+  </section>
 
-<div class="contact-section" id="contact">
-    <section>
-        <h2>Let's talk</h2>
-        <p class="subtitle">Whether you need a full migration or a quick assessment, we are happy to scope it out.</p>
-        <a href="mailto:benjamin@eukelinfra.com" class="cta">benjamin@eukelinfra.com</a>
-    </section>
-</div>
+  <!-- STATS / WHY US -->
+  <section id="why-us" aria-labelledby="why-h2">
+    <div class="container">
+      <p class="section-meta"><span class="section-num">iii.</span> Record</p>
+      <h2 id="why-h2">
+        Small practice. <em>Deep record.</em>
+      </h2>
+      <p class="hero-lede" style="margin-bottom: var(--space-5); animation: none; opacity: 1;">
+        No layers of account managers between you and the engineer doing the work.
+      </p>
+
+      <dl class="stats">
+        <div class="stat">
+          <dt class="stat-num">25+<span class="unit">yrs</span></dt>
+          <dd class="stat-label">In enterprise infrastructure architecture and delivery</dd>
+        </div>
+        <div class="stat">
+          <dt class="stat-num">500<span class="unit">+</span></dt>
+          <dd class="stat-label">Workloads migrated to cloud across regulated industries</dd>
+        </div>
+        <div class="stat">
+          <dt class="stat-num">33<span class="unit">sites</span></dt>
+          <dd class="stat-label">Supported globally across multi&#8209;region deployments</dd>
+        </div>
+        <div class="stat">
+          <dt class="stat-num">20<span class="unit">k</span></dt>
+          <dd class="stat-label">Concurrent VDI users architected for Walmart Health</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" aria-labelledby="contact-h2">
+    <div class="container">
+      <p class="section-meta"><span class="section-num">iv.</span> Contact</p>
+      <div class="section-split">
+        <header class="split-header">
+          <h2 id="contact-h2">Let&rsquo;s <em>talk.</em></h2>
+        </header>
+        <div class="split-body">
+          <p class="subtitle">
+            Whether you need a full migration or a quick assessment, we&rsquo;re happy to scope it out. Direct line to the principal.
+          </p>
+          <a href="mailto:beneukel@eukelinfra.com" class="email-link">beneukel@eukelinfra.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
 
 <footer>
-    &copy; 2026 Eukel Infrastructure Consultancy. All rights reserved.
+  <div class="container">
+    <p class="copy">&copy; 2026 Eukel Infrastructure Consultancy. All rights reserved.</p>
+    <p class="signoff">Built carefully, in Atlanta.</p>
+  </div>
 </footer>
 
 </body>
